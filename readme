@@ -1,0 +1,37 @@
+додаток для Yii по роботі з зображенями
+
+v 0.1
+
+Сторінка з оригіналом додатку http://www.yiiframework.com/extension/image/
+
+Встановлення
+1.
+'import'=>array(
+    ...
+    'application.helpers.*',
+    ...
+),
+ 2.
+ 'components'=>array(
+ 'cImage'=>array(
+           'class'=>'application.extensions.CImage.CImageComponent',
+             // GD or ImageMagick
+             'driver'=>'GD',
+             // ImageMagick setup path
+             'params'=>array('directory'=>'/opt/local/bin'),
+         ),...
+ )
+
+
+
+ Використання
+
+ $image = Yii::app()->cImage->load('images/test.jpg');
+ $image->resize(400, 100)->rotate(-45)->quality(75)->sharpen(20);
+ $image->save(); // or $image->save('images/small.jpg');
+ or
+
+ Yii::import('application.extensions.CImage.CImage');
+ $image = new CImage('images/test.jpg');
+ $image->resize(400, 100)->rotate(-45)->quality(75)->sharpen(20);
+ $image->render();
